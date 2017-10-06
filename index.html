@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Page One (Index) List items with basic examples. 
+	 Page Two can be a table/grid with more complex examples	-->
+
+<head>
+	<title>jQuery Examples</title>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
+    <link rel="stylesheet" type="text/css" href="master.css"/> 
+    <script src="masterjs.js"></script> 
+	<link href="https://fonts.googleapis.com/css?family=Pangolin|Raleway" rel="stylesheet">
+</head>
+
+<body>
+	
+<div id="head-wrapper">
+	<h1> Dave's playing around with jQuery </h1>
+</div>
+
+<button id="contentstab">--Contents--</button>
+<div id="navwrap" hidden="true">
+	<ul >
+		<li> <a href="#docreadyfunc">Document Ready Function</a></li>
+		<li> <a href="#SelElem">Selecting Elements</a></li>
+		<li> <a href="#travdom">Traversing the DOM</a></li>
+		<li> <a href="#createelem">Creating an Element</a></li>
+		<li> <a href="#addremove">Adding and Removing Elements</a></li>
+		<li> <a href="#changing">Changing Text or HTML</a></li>
+		<li> <a href="#interon">Interacting using .on()</a></li>
+		<li> <a href="#changecss">Changing CSS with .css()</a></li>
+		<li> <a href="#usethis">The <em>this</em> Keyword</a></li>
+		<li> <a href="#onselect">The .on() Selector</a></li>
+		<li> <a href="#usefilter">Using .filter() </a></li>
+		<li> <a href="#hideelem">Hidden Elements and Toggle</a></li>
+		<li> <a href="#keyevents">Keyboard Events</a></li>
+		<li> <a href="#animate">Animation with .animate()</a></li>
+		<li> <a href="#eventhand">Event Handlers</a></li>
+	</ul>
+</div>
+
+
+<div id="body-wrap">
+	<h3><a name="docreadyfunc">Document Ready Function</a></h3>
+	<p>	We always want to put our jQuery inside a .ready function so that the code does not begin until the browser
+		has loaded all of the html data. Otherwise any script may not work properly. The code looks as follows:</p>
+	<ul class='hidelist'>
+		<li><code>$(document).ready(function(){</code></li>
+		<li><code class="greytext">// code goes here</code></li>
+		<li><code>});</code></li>
+	</ul>
+
+	<h3><a name="SelElem">Selecting Elements</a></h3>
+	<p>Below is an unordered list with <code>id="mylist"</code> and each list item has <code>class="item"</code>.</p>
+	<table id="firsttable">
+		<tr>
+			<td>
+				<ul id="mylist">
+					<li class="hidelist"></li>
+					<li class="item">One</li>
+					<li class="item">Two</li>
+					<li class="item">Three</li>
+					<li class="hidelist"></li>
+				</ul>
+			</td>
+			<td>
+				<ul class="hidelist"> 	  
+					<li class="item"> <code> &ltul id="mylist"&gt	</code></li>
+					<li class="item tabspace"> <code> &ltli class="item"&gtOne&lt/li&gt	</code></li>
+					<li class="item tabspace"> <code> &ltli class="item"&gtTwo&lt/li&gt	</code></li>
+					<li class="item tabspace"> <code> &ltli class="item"&gtThree&lt/li&gt	</code></li>
+					<li class="item"> <code> &lt/ul&gt	</code></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<p>	To call an element we need to use a selector: </p>
+	<ul>
+		<li><code>$('li')</code>	would select all elements in the page witch in this case are list items.</li>
+		<li><code>$('.item')</code>	would select all elements with the class 'item'.</li>
+		<li><code>$('#mylist')</code> would select any element with the id 'mylist'.</li>
+		<li><code>$('#mylist li')</code> would select all the &ltli&gt elements which are under the element with id 'mylist'.
+		</li><li><code>$('#mylist > li')</code> using a greater than sign however would only select the &ltli&gt elements which are direct children of the element with id 'mylist'.</li>
+		</li><li><code>$('#mylist, .item')</code> with a comma to seperate you can select multiple elements.</li>
+		</li><li><code>$('#mylist, li:first')</code> this selects the first list item under the element with id 'mylist'. You can also replace 'first' with 'last', 'even' or 'odd'.</li>
+	</ul>
+
+	<h3><a name="travdom">Traversing the DOM (Document Object Model)</a></h3>
+	<p>There are 'shortcuts' to navigating your way around HTML elements.</p>
+	<ul>
+		<li><code>$('#mylist').find('li');</code> will return all &ltli&gt elements within the #mylist parent element.</li>
+		<li><code>$('li').last();</code> will return the last &ltli&gt element. Likewise, .first() would return the first.</li>
+		<li><code>$('li').first().next().prev();</code> Methods can be strung together to traverse up and down the DOM.</li>
+		<li><code>$('li').first().parent();</code> This will return the parent, in this case the &ltli&gt with id 'mylist'.</li>
+		<li><code>$('#mylist').children('li');</code> Similar to find() but this will only return the &ltli&gt elements that are children of 'mylist'.</li>	
+		<li><code>$('#mylist').closest('li');</code> This returns the closest &ltli&gt element.</li>
+	</ul>
+		<h3><a name="createelem">Creating an Element</h3>
+	<p>For example, an element we might want to create is a list item in order to add it to a list. This may look something like: <code>var element = $('&ltli&gtDon't forget the carrots&lt/li&gt');</code>.</p>
+
+	<h3><a name="addremove">Adding and Removing Elements</a></h3>
+	<p>If we wanted to add an element, such as a new item to our list we can do that using the following functions:</p>
+	<ul>
+		<li><code>.append(&ltelement&gt)</code> adds an element to the end of the selected elements children.</li>
+		<li><code>.prepend(&ltelement&gt)</code> adds an element to the beginning of the selected elements children.</li>
+		<li><code>.after(&ltelement&gt)</code> adds a new element after the selected element.</li>
+		<li><code>.before(&ltelement&gt)</code> adds a new element before the selected element.</li>
+		<li><code>.remove(&ltelement&gt)</code> removes the selected element.</li>
+	</ul>
+	<p>For example: <code>$('#mylist').prepend(element);</code></p>
+	<p>There are also four very similar ways to append to the DOM. These do the same thing but is written differently</p>
+	<ul>
+		<li><code>.appendTo(&ltelement&gt)</code> </li>
+		<li><code>.prependTo(&ltelement&gt)</code> </li>
+		<li><code>.insertAfter(&ltelement&gt)</code> </li>
+		<li><code>.insertBefore(&ltelement&gt)</code> </li>
+	</ul>
+	<p>For example: <code>element.appendTo($('#mylist'));</code></p>
+
+	<h3><a name="changing">Changing an Element's Text or HTML</a></h3>
+	<p>Using .text() or .html() we can both get and edit code within an element. The two are very similar but have their differences - the clue is in the name. </p>
+	<ul class="hidelist">
+	<li><code>$('&ltelement&gt').text();</code></li>
+	<li><code>$('&ltelement&gt').text("Enter text here");</code></li>
+	</ul>
+	<p>The first line would return the text from the selected element, whereas the second line would replace any text within the element.</p>
+
+	<h3><a name="interon">Interactions with .on()</a></h3>
+	<p>We use the following structure to interact with elements on the page.</p>
+	<ul class="hidelist">
+	<li><code>$('&ltelement&gt').on('action',function(){</code></li>
+	<li><code class="greytext">// code goes here</code></li>
+	<li><code>});</code></li>
+	</ul>
+	<p>Common elements to see here would be things like buttons and the on-action likely to be on 'click'. Then pretty straightforward, next a function is called. Other actions can be 'mouseenter' and 'mouseleave'.</p>
+	<h3><a name="changecss">Changing the .css()</a></h3>
+	<p>The code below is an example of a button interaction to change the css background-color of the square box. The buttons each have id's of '#green' and '#orange' and the box '#mybox'.</p>
+
+	<div class="center">
+	<button id="green">Green Box</button>
+	<button id="orange">Orange Box</button>
+	</div>
+
+	<table>
+		<tr>
+			<td>
+				<ul class="hidelist"> 	  
+					<li class="item"> <code> $('#green').on('click',function(){	</code></li>
+					<li class="item tabspace"> <code> $('#mybox').css("background-color","green");	</code></li>
+					<li class="item"> <code> });</code></li>
+					<li class="item"> <code> $('#orange').on('click',function(){	</code></li>
+					<li class="item tabspace"> <code> $('#mybox').css("background-color","orange");	</code></li>
+					<li class="item"> <code> });</code></li>
+				</ul>
+			</td>
+			<td>
+				<div id='mybox'></div>
+			</td>
+		</tr>	
+	</table>
+
+	<h3><a name="usethis"><em>This</em> Keyword</a></h3>
+	<p><em>This</em> is an important keyword as it refers back to the element we have selected. For example, if we had a button with the code: </p>
+	<ul class="hidelist">
+		<li><code>$('button').on('click', function(){ </code></li>
+		<li class="tabspace"><code>$(this).remove(); </code></li>
+		<li><code>});</code></li>
+	</ul>
+	<p><em>this</em> would be referring to the originally selected button, and hence remove itself. Below is an example of using <em>this</em> to change the property of a box when you move the mouse over it, with the following code. </p>
+
+	<div id="greybox" class="shortbox"></div>
+	<ul class="hidelist">
+		<li><code>$('#greybox').on('mouseenter', function(){ </code></li>
+		<li class="tabspace"><code>$(this).addClass('longbox').removeClass('shortbox'); </code></li>
+		<li><code>});</code></li>
+		<li><code>$('#greybox').on('mouseleave', function(){ </code></li>
+		<li class="tabspace"><code>$(this).addClass('shortbox').removeClass('longbox'); </code></li>
+		<li><code>});</code></li>
+	</ul>
+
+	<h3><a name="onselect">.on() also has a Selector</a></h3>
+	<p>Before the function and after the action, we can add a selector to the .on() method. In this example, if we had a list of different elements on a page, the following code would only select the button elements within that list. The same would go for classes, if say you wanted to change the style of every list element of a certain class.</p>	
+	<ul class="hidelist">
+		<li><code>$('#mylist').on('click', 'button', function(){</code></li>
+		<li><code class="greytext">// code goes here</code></li>
+		<li><code>});</code></li>
+	</ul>
+
+	<h3><a name="usefilter">.filter()</a></h3>
+	<p>Similarly when calling an element you can filter out those elements or classes that you want additionally. For example the following code:</p>
+	<ul class="hidelist">
+		<li><code>$('.under50pounds').filter('.onsale')</code></li>
+	</ul>
+	<p>To which we may choose to add a styling class for any items that are under 50 pounds and also on sale. </p>
+
+	<h3><a name="hideelem">Hidden Elements and Toggle</a></h3>
+	<p>As well as changing the style of elements or adding CSS and classes, we can show or hide very easily with jQuery by adding the CSS property "display: none;". Here is an example with the javascript code and several types of toggle: '.toggle()', '.slideToggle()' and '.fadeToggle()'.</p>
+
+	<ul class="hidelist">
+		<li><code>$('#togglebox').on('click',function(){</code></li>
+		<li class="tabspace"><code>$('#hiddenbox').toggle();</code></li>
+		<li><code>});</code></li>
+	</ul>
+
+	<button id="togglebox">Toggle</button><br>
+	<div id="hiddenbox" class="longbox" style="display:none;"></div>
+	<button id="slidebox">Slide Toggle</button> <br>
+	<div id="hiddenboxslide" class="longbox" style="display:none;"></div>
+	<button id="fadebox">Fade Toggle</button> 
+	<div id="hiddenboxfade" class="longbox" style="display:none;"></div>
+
+	<h3><a name="keyevents">Keyboard Events (immediate feedback)</a></h3>
+	<p>We can have jQuery recieve data from user input and return it after performing some kind of action on it. For example having the user input values and return the sum of those values, as shown below. Here we use 'keyup' instead of 'onclick' and in order to get the value we use '.val()'.</p>
+
+	<ul class="hidelist">
+		<li><code>$('#mymathlist').on('keyup', function(){</code></li>
+		<li class="tabspace"><code>var numone = +$('#numone').val();</code></li>
+		<li class="tabspace"><code>var numtwo = +$('#numtwo').val();</code></li>
+		<li class="tabspace"><code>$('#myanswer').val(numone + numtwo);</code></li>
+		<li><code>});</code></li>
+	</ul>
+	
+	<ul id="mymathlist" class="hidelist">
+		<li><input id="numone"/> + <input id="numtwo"/> = <input id="myanswer" disabled="true" /></li>		
+	</ul>
+
+	<p>It is also important that we include a '+' symbol before we collect the value of the input as that ensures only numbers are received as opposed to strings. </p>
+
+	<h3><a name="animate">Animating with jQuery</a></h3>
+	<p>We can move a small box around like so:</p>
+	<div id="smallbox">Click Me!</div>
+	<p>Using the following code:</p>
+
+	<ul class="hidelist">
+		<li><code>$('#smallbox').on('click',function(){</code></li>
+		<li class="tabspace"><code>$(this).toggleClass('moved');</code></li>
+		<li class="tabspace"><code>if($(this).hasClass('moved')) {</code></li>
+		<li class="tabspace2"><code>$(this).animate({"left":"600px"},'fast');</code></li>
+		<li class="tabspace"><code>} else {</code></li>
+		<li class="tabspace2"><code>$(this).animate({"left":"0px"},'slow');</code></li>
+		<li class="tabspace"><code>}</code></li>
+		<li><code>});</code></li>
+	</ul>
+
+	<p>Here we target the '#smallbox' id and do our usual on.('click',function(){... The method used to move the box is .animate() wherein you enter CSS properties and optionally how fast you want the animation to happen. With this example I used toggleClass to add and remove a class so that I can then use a if statement to check on the box's position. If it has been moved, clicking on it will move it back to position, and vice versa.  </p>
+
+
+
+	<h3><a name="eventhand">Event Handlers</a></h3>
+	<p>Useful reminders: event.stopPropagation(); and event.preventDefault();</p>
+
+	<!-- And then we just build a popout contents nav bar on the side of the page. -->
+
+	<div class="pagebottom"></div>
+
+
+</div>
+
+
+
+</body></html>

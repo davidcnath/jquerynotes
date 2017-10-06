@@ -1,0 +1,116 @@
+
+
+#head-wrapper		{width:550px;
+					margin:10px auto 40px auto;
+					text-align: center;
+					font-family: 'Pangolin';}
+
+h3					{font-family: 'Pangolin';}
+
+#body-wrap			{width: 700px;
+					margin:10px auto 10px auto;
+					font-family: 'Raleway';}
+
+#navbar				{width:550px;
+					margin:10px auto 40px auto;
+					text-align: center;
+					font-family: 'Pangolin';
+					font-size: 24px}
+
+code				{color: red;}
+
+ul					{list-style-type: circle;}
+
+.greytext			{color:grey;}
+
+.hidelist			{list-style-type: none;}
+
+.tabspace			{text-indent: 1em;}
+.tabspace2			{text-indent: 2em;}
+
+#firsttable			{margin: -20px 0px -20px 0px;}
+
+#mybox			{background-color: orange;
+				width: 100px;
+				height:100px;
+				border:solid 2px;
+				margin-left: 50px;}
+
+
+.center			{text-align: center}
+
+.shortbox		{border: black 2px solid;
+				background-color: #CFC7C0;
+				width: 250px; height: 50px;
+				margin: 0px auto 20px auto;}
+
+.longbox		{border: black 2px solid;
+				background-color: #CFC7C0;
+				width: 700px; height: 50px;
+				margin: 0px auto 20px auto;}
+
+.pagebottom		{height: 200px;}
+
+input:disabled		{background-color: white;
+					color: black;
+					border: none;}
+
+#smallbox		{background-color: red;
+				border: black 2px solid;
+				margin-top: 10px;
+				position: relative;
+				width: 100px;
+				text-align: center;
+				padding: 10px 10px 10px 10px;}
+
+#contentstab	{background-color: #FFF864;
+				font-family: "Pangolin";
+				font-size: 18px;
+				padding: 10px 10px 10px 10px;
+				border: black 2px solid;
+				position:fixed;
+				left:5%;
+				top: 20px;}
+
+#navwrap		{background-color: #FFF864;
+				border: 2px black solid;
+				font-family: "Pangolin";
+				position:fixed;
+				left:60px;
+				top:70px;
+				width: 300px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
